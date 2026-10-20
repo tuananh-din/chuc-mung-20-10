@@ -18,9 +18,9 @@
 
   function renderGreeting() {
     const name = nameInput.value.trim();
-    greeting.textContent = name
-      ? `Gửi đến ${name}, những đoá hoa đẹp nhất của ngày hôm nay.`
-      : 'Gửi đến những người phụ nữ tuyệt vời, những đoá hoa đẹp nhất của ngày hôm nay.';
+    // Chưa nhập tên → chào chung cả team (tên team lấy từ team-members.js, nếu có)
+    const team = window.TEAM_NAME ? `chị em ${window.TEAM_NAME}` : 'những người phụ nữ tuyệt vời';
+    greeting.textContent = `Gửi đến ${name || team}, những đoá hoa đẹp nhất của ngày hôm nay.`;
     document.title = name ? `Chúc mừng 20/10, ${name}` : 'Chào mừng 20/10';
   }
 

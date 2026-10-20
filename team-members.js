@@ -1,7 +1,7 @@
 // team-members.js — danh sách nhân sự được chúc mừng. Chỉ cần sửa file này để thêm/bớt người.
 // Mỗi người: ten (bắt buộc), bietDanh (tuỳ chọn: quê quán/biệt danh), vaiTro (tuỳ chọn),
 // loiChuc (tuỳ chọn; để trống sẽ dùng lời chúc mặc định)
-window.TEAM_NAME = '';
+window.TEAM_NAME = 'team Channel Marketing';
 window.TEAM_MEMBERS = [
   {
     ten: 'Tùng Linh',
