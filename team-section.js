@@ -17,6 +17,26 @@
 
   teamName.textContent = window.TEAM_NAME || 'team';
 
+  // Ảnh tròn thay cho icon hoa; icon thu nhỏ thành huy hiệu ở góc ảnh. Ảnh lỗi → quay về icon hoa to.
+  function addAvatar(icon, m) {
+    const avatar = document.createElement('span');
+    avatar.className = 'the-hoa-avatar';
+    const img = new Image(96, 96);
+    img.className = 'the-hoa-anh';
+    img.alt = m.ten;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.addEventListener('error', () => {
+      icon.classList.remove('the-hoa-huy-hieu');
+      avatar.before(icon);
+      avatar.remove();
+    });
+    img.src = m.anh;
+    icon.before(avatar);
+    icon.classList.add('the-hoa-huy-hieu');
+    avatar.append(img, icon);
+  }
+
   members.forEach((m, i) => {
     const card = document.createElement('button');
     card.type = 'button';
@@ -27,7 +47,9 @@
       '<span class="the-hoa-biet-danh"></span><span class="the-hoa-vai-tro"></span>' +
       '<span class="the-hoa-loi-chuc"></span>';
     // Dùng textContent để tên/biệt danh/lời chúc luôn là văn bản thuần
-    card.querySelector('.the-hoa-icon').textContent = FLOWERS[i % FLOWERS.length];
+    const icon = card.querySelector('.the-hoa-icon');
+    icon.textContent = FLOWERS[i % FLOWERS.length];
+    if (m.anh) addAvatar(icon, m);
     card.querySelector('.the-hoa-ten').textContent = m.ten;
     card.querySelector('.the-hoa-biet-danh').textContent = m.bietDanh || '';
     card.querySelector('.the-hoa-vai-tro').textContent = m.vaiTro || '';
