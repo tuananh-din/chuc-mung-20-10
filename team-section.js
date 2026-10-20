@@ -1,0 +1,45 @@
+// team-section.js — vẽ lưới thẻ hoa cho từng nhân sự từ team-members.js; nhấn thẻ → điền tên người đó + nở hoa
+(function () {
+  'use strict';
+  const members = window.TEAM_MEMBERS || [];
+  const section = document.getElementById('doi-ngu');
+  const grid = document.getElementById('danh-sach-hoa');
+  const teamName = document.getElementById('ten-team');
+  if (!members.length) return; // chưa có danh sách → giữ phần này ẩn
+
+  const FLOWERS = ['🌸', '🌷', '🌹', '🌼', '🌺', '💐', '🪷', '🌻'];
+  const DEFAULT_WISHES = [
+    'Chúc luôn rạng rỡ, hạnh phúc và tràn đầy năng lượng mỗi ngày.',
+    'Chúc nụ cười luôn nở trên môi như trăm hoa đua nở hôm nay.',
+    'Chúc thật nhiều sức khoẻ, niềm vui và thành công trên mọi con đường.',
+    'Cảm ơn vì luôn dịu dàng, tận tâm với cả team. Chúc một ngày thật ngọt ngào!',
+  ];
+
+  teamName.textContent = window.TEAM_NAME || 'team';
+
+  members.forEach((m, i) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'the-hoa';
+    card.style.setProperty('--tre', `${i * 90}ms`);
+    card.innerHTML =
+      '<span class="the-hoa-icon"></span><span class="the-hoa-ten"></span>' +
+      '<span class="the-hoa-vai-tro"></span><span class="the-hoa-loi-chuc"></span>';
+    // Dùng textContent để tên/lời chúc luôn là văn bản thuần
+    card.querySelector('.the-hoa-icon').textContent = FLOWERS[i % FLOWERS.length];
+    card.querySelector('.the-hoa-ten').textContent = m.ten;
+    card.querySelector('.the-hoa-vai-tro').textContent = m.vaiTro || '';
+    card.querySelector('.the-hoa-loi-chuc').textContent = m.loiChuc || DEFAULT_WISHES[i % DEFAULT_WISHES.length];
+
+    card.addEventListener('click', () => {
+      const input = document.getElementById('ten');
+      input.value = m.ten;
+      input.dispatchEvent(new Event('input')); // main.js cập nhật lời chào theo tên
+      if (window.garden) window.garden.burst(10);
+      document.getElementById('loi-chao').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    grid.appendChild(card);
+  });
+
+  section.hidden = false;
+})();

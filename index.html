@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chào mừng 20/10</title>
+  <meta name="description" content="Thiệp web trăm hoa đua nở chào mừng Ngày Phụ nữ Việt Nam 20/10 — hoa nở, cánh hoa rơi, nhạc nền và lời chúc gửi tặng từng người.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-overlay-music-team.css">
+</head>
+<body>
+  <!-- Vườn hoa vẽ bằng canvas, nằm phía sau toàn bộ nội dung -->
+  <canvas id="garden" aria-hidden="true"></canvas>
+
+  <!-- Màn mở thiệp: cần một cú chạm của người xem thì trình duyệt mới cho phát nhạc -->
+  <div id="mo-thiep" class="mo-thiep">
+    <div class="the-kinh the-mo">
+      <p class="nhan">20 · 10 · Ngày Phụ nữ Việt Nam</p>
+      <p class="mo-thiep-tieu-de">Một tấm thiệp nhỏ <em>gửi tặng bạn</em></p>
+      <button id="btn-mo-thiep" class="nut nut-chinh" type="button">🌸 Mở thiệp</button>
+      <p class="mo-thiep-ghi-chu">Có nhạc nền, bật loa lên nhé</p>
+    </div>
+  </div>
+
+  <main class="trang">
+    <p class="nhan len">20 · 10 · Ngày Phụ nữ Việt Nam</p>
+    <h1 class="tieu-de len">Trăm hoa <em>đua nở</em></h1>
+    <p class="phu-de len">Chúc mừng Ngày Phụ nữ Việt Nam</p>
+
+    <section class="the-kinh len" aria-label="Lời chúc">
+      <p id="loi-chao" class="loi-chao"></p>
+      <blockquote id="loi-chuc" class="loi-chuc"></blockquote>
+      <div class="hang-nut">
+        <button id="btn-loi-chuc" class="nut nut-phu" type="button">Lời chúc khác</button>
+        <button id="btn-no-hoa" class="nut nut-chinh" type="button">🌸 Nở thêm hoa</button>
+      </div>
+    </section>
+
+    <!-- Lưới thẻ hoa cho từng nhân sự, dữ liệu lấy từ team-members.js; tự ẩn khi danh sách trống -->
+    <section id="doi-ngu" class="doi-ngu len" aria-label="Chúc mừng nhân sự" hidden>
+      <h2 class="doi-ngu-tieu-de">Những bông hoa của <span id="ten-team">team</span></h2>
+      <div id="danh-sach-hoa" class="luoi-hoa"></div>
+    </section>
+
+    <section class="the-kinh the-gui len" aria-label="Gửi tặng">
+      <label for="ten" class="nhan-nho">Gửi tặng ai đó</label>
+      <div class="hang-gui">
+        <input id="ten" type="text" maxlength="40" placeholder="Nhập tên người nhận…" autocomplete="off">
+        <button id="btn-chia-se" class="nut nut-phu" type="button">Sao chép link</button>
+      </div>
+    </section>
+
+    <p class="goi-y len">Chạm vào bất kỳ đâu để trồng thêm một bông hoa 🌷</p>
+  </main>
+
+  <audio id="nhac-nen" src="nhac-nen.mp3" loop preload="auto"></audio>
+  <button id="btn-nhac" class="nut-nhac" type="button" aria-pressed="false" aria-label="Bật hoặc tắt nhạc nền">🎵</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="garden.js"></script>
+  <script src="team-members.js"></script>
+  <script src="team-section.js"></script>
+  <script src="main.js"></script>
+  <script src="music-player.js"></script>
+</body>
+</html>

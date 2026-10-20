@@ -1,0 +1,70 @@
+/* styles-overlay-music-team.css — màn "Mở thiệp", nút nhạc nền và lưới thẻ hoa chúc mừng nhân sự */
+
+/* Màn mở thiệp phủ toàn trang, làm mờ vườn hoa phía sau */
+.mo-thiep {
+  position: fixed; inset: 0; z-index: 3;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  background: rgba(255, 228, 236, 0.55);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: opacity .6s ease;
+}
+.mo-thiep.an { opacity: 0; pointer-events: none; }
+.the-mo { max-width: 460px; text-align: center; padding: 36px 30px 30px; }
+.mo-thiep-tieu-de {
+  margin: 6px 0 22px;
+  font-family: "Playfair Display", Georgia, serif; font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.15;
+}
+.mo-thiep-tieu-de em { font-style: italic; color: var(--hong); }
+.mo-thiep-ghi-chu { margin: 14px 0 0; font-size: 0.85rem; color: var(--mau-chu-nhat); }
+
+/* Nút nhạc nền nổi ở góc dưới bên phải, xoay khi đang phát */
+.nut-nhac {
+  position: fixed; right: 18px; bottom: 18px; z-index: 2;
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 2px solid rgba(224, 69, 123, 0.35);
+  background: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer;
+  box-shadow: 0 10px 24px rgba(120, 40, 80, 0.18);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.nut-nhac:hover { transform: translateY(-2px); border-color: var(--hong); }
+.nut-nhac.dang-phat { animation: xoay 4s linear infinite; border-color: var(--hong); }
+@keyframes xoay { to { transform: rotate(360deg); } }
+
+/* Phần chúc mừng nhân sự */
+.doi-ngu { width: 100%; margin-top: 28px; }
+.doi-ngu[hidden] { display: none; }
+.doi-ngu-tieu-de {
+  margin: 0 0 16px;
+  font-family: "Playfair Display", Georgia, serif; font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+}
+.doi-ngu-tieu-de span { color: var(--hong); font-style: italic; }
+.luoi-hoa {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  pointer-events: auto;
+}
+.the-hoa {
+  font: inherit; text-align: center; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 20px 16px 18px;
+  background: var(--kinh); border: 1px solid var(--vien-kinh); border-radius: 20px;
+  box-shadow: var(--bong);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  color: var(--mau-chu);
+  animation: len .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--tre, 0ms);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.the-hoa:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(120, 40, 80, 0.2); }
+.the-hoa-icon { font-size: 2rem; line-height: 1; margin-bottom: 6px; }
+.the-hoa-ten { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: 1.2rem; }
+.the-hoa-vai-tro { font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--hong); }
+.the-hoa-vai-tro:empty { display: none; }
+.the-hoa-loi-chuc { margin-top: 8px; font-size: .92rem; line-height: 1.5; color: var(--mau-chu-nhat); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nut-nhac.dang-phat, .the-hoa { animation: none; }
+  .mo-thiep { transition: none; }
+}
