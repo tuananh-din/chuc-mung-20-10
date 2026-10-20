@@ -24,10 +24,12 @@
     card.style.setProperty('--tre', `${i * 90}ms`);
     card.innerHTML =
       '<span class="the-hoa-icon"></span><span class="the-hoa-ten"></span>' +
-      '<span class="the-hoa-vai-tro"></span><span class="the-hoa-loi-chuc"></span>';
-    // Dùng textContent để tên/lời chúc luôn là văn bản thuần
+      '<span class="the-hoa-biet-danh"></span><span class="the-hoa-vai-tro"></span>' +
+      '<span class="the-hoa-loi-chuc"></span>';
+    // Dùng textContent để tên/biệt danh/lời chúc luôn là văn bản thuần
     card.querySelector('.the-hoa-icon').textContent = FLOWERS[i % FLOWERS.length];
     card.querySelector('.the-hoa-ten').textContent = m.ten;
+    card.querySelector('.the-hoa-biet-danh').textContent = m.bietDanh || '';
     card.querySelector('.the-hoa-vai-tro').textContent = m.vaiTro || '';
     card.querySelector('.the-hoa-loi-chuc').textContent = m.loiChuc || DEFAULT_WISHES[i % DEFAULT_WISHES.length];
 

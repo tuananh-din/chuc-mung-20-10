@@ -60,8 +60,9 @@
 .the-hoa:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(120, 40, 80, 0.2); }
 .the-hoa-icon { font-size: 2rem; line-height: 1; margin-bottom: 6px; }
 .the-hoa-ten { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: 1.2rem; }
-.the-hoa-vai-tro { font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--hong); }
-.the-hoa-vai-tro:empty { display: none; }
+.the-hoa-biet-danh { font-style: italic; font-size: .9rem; color: var(--mau-chu-nhat); } /* quê quán / biệt danh */
+.the-hoa-vai-tro { margin-top: 2px; font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--hong); }
+.the-hoa-biet-danh:empty, .the-hoa-vai-tro:empty { display: none; }
 .the-hoa-loi-chuc { margin-top: 8px; font-size: .92rem; line-height: 1.5; color: var(--mau-chu-nhat); }
 
 @media (prefers-reduced-motion: reduce) {
